@@ -1999,6 +1999,7 @@ def register_type_strategy(
         )
     if (
         "pydantic.generics" in sys.modules
+        and isclass(custom_type)
         and issubclass(custom_type, sys.modules["pydantic.generics"].GenericModel)
         and not re.search(r"[A-Za-z_]+\[.+\]", repr(custom_type))
         and callable(strategy)
